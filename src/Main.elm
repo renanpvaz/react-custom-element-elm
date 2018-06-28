@@ -37,6 +37,7 @@ init =
 
 type Msg
     = DomNoOp
+    | ClickedOnReactButton
 
 
 update : Msg -> Model -> ( Model, Cmd msg )
@@ -46,4 +47,23 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    Html.node "leaflet-map" [] []
+    div [ class "container" ]
+        [ h1 []
+            [ text "React component"
+            , code [ style [ ( "color", "purple" ) ] ] [ text " → " ]
+            , text "Custom elment"
+            , code [ style [ ( "color", "purple" ) ] ] [ text " → " ]
+            , text "Elm view"
+            ]
+        , section
+            [ class "content" ]
+            [ h2 [] [ text "Leaflet map" ]
+            , Html.node "leaflet-map"
+                [ attribute "center" "51.505,-0.09" ]
+                []
+            , h2 [] [ text "A custom button" ]
+            , Html.node "react-button"
+                [ onClick ClickedOnReactButton, attribute "label" "yeah boii" ]
+                []
+            ]
+        ]

@@ -10,11 +10,23 @@
     <style>
       body {
         padding: 20px;
+        font-family: system-ui;
+        color: rgba(0, 0, 0, .8);
+        font-size: 14px
       }
+
+      .container {
+        max-width: 830px;
+        margin: 0 auto;
+      }
+
+      * + h2 {
+        margin-top: 64px;
+      }
+
       .leaflet-container {
         height: 400px;
         width: 80%;
-        margin: 0 auto;
       }
     </style>
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
@@ -30,19 +42,12 @@
       const Leaflet = window.ReactLeaflet
 
       document.registerReact('leaflet-map', class extends React.Component {
-        constructor(props) {
-          super(props)
-          this.state = {
-            lat: 51.505,
-            lng: -0.09,
-            zoom: 13,
-          }
-        }
-
         render() {
-          const position = [this.state.lat, this.state.lng]
+          console.log(this.props);
+          const [lat, lng] = (this.props.center || '0,0').split(',')
+          const position = [lat, lng]
 
-          return h(Leaflet.Map, { center: position, zoom: this.state.zoom }, [
+          return h(Leaflet.Map, { center: position, zoom: 13}, [
             h(Leaflet.TileLayer, {
               key: 'tile',
               attribution: '&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors',
@@ -52,6 +57,14 @@
               h(Leaflet.Popup, {}, 'A pretty CSS3 popup. Easily customizable.')
             ])
           ])
+        }
+      })
+
+      document.registerReact('react-button', class extends React.Component {
+        render() {
+          return h('button',
+          { style: { background: 'red', padding: '16px 32px', fontSize: 16, color: 'white', fontWeight: 'bold'} },
+          this.props.label)
         }
       })
 
