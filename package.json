@@ -1,0 +1,19 @@
+{
+  "name": "elm-google-maps",
+  "version": "1.0.0",
+  "description": "Google Maps in Elm 0.18!",
+  "main": "app.js",
+  "scripts": {
+    "start": "elm-live src/Main.elm --output=app.js --open -- --debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtfeldman/elm-google-maps.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rtfeldman/elm-google-maps/issues"
+  },
+  "homepage": "https://github.com/rtfeldman/elm-google-maps#readme"
+}
